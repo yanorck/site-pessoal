@@ -30,3 +30,11 @@ model Like {
 
   @@unique([ip, messageId])
 }
+
+// Add this model to your schema
+model HighScore {
+  id        Int      @id @default(autoincrement())
+  name      String
+  score     Int
+  createdAt DateTime @default(now())
+}
