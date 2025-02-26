@@ -1,16 +1,16 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { headers } from 'next/headers'
 
 export async function POST(
-  request: Request,
-  { params }: { params: { messageId: string } }
+  req: NextRequest,
+  { params }: { params: { [key: string]: string | string[] } }
 ) {
   try {
     const headersList = headers()
     const ip = headersList.get('x-forwarded-for') || 'unknown'
-    const messageId = parseInt(params.messageId)
-
+    const messageId = parseInt(params.messageId as string)
+    
     // Check if message exists
     const message = await prisma.message.findUnique({
       where: { id: messageId }

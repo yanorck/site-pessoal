@@ -13,7 +13,7 @@ export async function GET() {
       }
     })
     return NextResponse.json(messages || [])
-  } catch (_error) { // Added underscore to indicate intentionally unused
+  } catch {
     return NextResponse.json([], { status: 500 })
   }
 }
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     })
 
     return NextResponse.json(message, { status: 201 })
-  } catch (_error) { // Added underscore to indicate intentionally unused
+  } catch {
     return NextResponse.json(
       { error: 'Failed to create message' },
       { status: 500 }

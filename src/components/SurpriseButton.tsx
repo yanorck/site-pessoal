@@ -13,7 +13,7 @@ export default function SurpriseButton() {
       const data = await response.json()
       const joke = data.type === 'single' ? data.joke : `${data.setup}\n\n${data.delivery}`
       setSurprise(joke)
-    } catch (_error) { // Added underscore to indicate intentionally unused
+    } catch {
       setSurprise('Oops! The surprise machine is taking a quick nap. Try again!')
     }
     setLoading(false)
